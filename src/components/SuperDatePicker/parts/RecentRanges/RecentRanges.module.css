@@ -1,0 +1,34 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.itemButton {
+  padding: 8px 12px;
+  background-color: #eef0f3;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.itemButton:hover {
+  background-color: #dbe4ed;
+}
+
+.clearButton {
+  margin-top: 12px;
+  padding: 6px 10px;
+  background-color: #eee;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.clearButton:hover {
+  background-color: #ddd;
+}
