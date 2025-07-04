@@ -22,7 +22,7 @@ export const DatePickerControls: React.FC<DatePickerControlsProps> = ({
 }) => {
   return (
     <ToggleSection title="Date Picker Settings">
-      <div className={styles.controls}>
+      <div className={styles.controls} data-testid="mode-indicator">
         <div className={styles.controlGroup}>
           <label className={styles.label}>Mode</label>
           <select

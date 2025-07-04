@@ -6,23 +6,32 @@ import styles from "./RecentRanges.module.css";
 interface Props {
   items: RecentRange[];
   onSelect: (range: RecentRange) => void;
+  onClearHistory: () => void;
 }
 
-export const RecentRanges: React.FC<Props> = ({ items, onSelect }) => {
+export const RecentRanges: React.FC<Props> = ({
+  items,
+  onSelect,
+  onClearHistory,
+}) => {
   if (items.length === 0) return null;
 
   return (
     <ToggleSection title="Recent Ranges" defaultOpen={false}>
-      <div className={styles.list}>
+      <div className={styles.list} data-testid="recent-ranges">
         {items.map((range, i) => (
           <button
             key={i}
-            className={styles.itemButton}
+            className={`${styles.itemButton} ${styles.fadeInOut}`}
             onClick={() => onSelect(range)}
           >
             {renderLabel(range)}
           </button>
         ))}
+
+        <button className={styles.clearButton} onClick={onClearHistory}>
+          Clear History
+        </button>
       </div>
     </ToggleSection>
   );

@@ -75,7 +75,11 @@ export const AutoRefreshControls: React.FC<AutoRefreshControlsProps> = ({
           <option value="h">Hours</option>
         </select>
 
-        <button onClick={handleApply} className={styles.button}>
+        <button
+          onClick={handleApply}
+          className={styles.button}
+          data-testid="auto-refresh-toggle"
+        >
           Refresh
         </button>
 

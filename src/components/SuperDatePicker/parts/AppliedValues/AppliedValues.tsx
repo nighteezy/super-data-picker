@@ -47,7 +47,7 @@ export const AppliedValues: React.FC<AppliedValuesProps> = ({
   if (!shouldRender) return null;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="applied-values">
       <strong className={styles.header}>📅 Applied:</strong>
 
       {mode === "multi-range" ? (

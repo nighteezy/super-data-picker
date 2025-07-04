@@ -14,7 +14,7 @@ import { RelativeModePanel } from "./parts/RelativeModePanel/RelativeModePanel";
 import { CompareToPreviousToggle } from "./parts/CompareToPreviousToggle/CompareToPreviousToggle";
 import { usePreviousPeriod } from "./hooks/usePreviousPeriod";
 import { AutoRefreshControls } from "./parts/AutoRefreshControls/AutoRefreshControls";
-import { useRecentRanges } from "./hooks/useRecentRanges";
+import useRecentRanges from "./hooks/useRecentRanges";
 import { RecentRanges } from "./parts/RecentRanges/RecentRanges";
 import type { RecentRange } from "./types/RecentRange";
 import styles from "./SuperDatePicker.module.css";
@@ -55,7 +55,7 @@ export const SuperDatePicker: React.FC = () => {
     appliedEndDate
   );
 
-  const { recent, add: addRecentRange } = useRecentRanges();
+  const { recent, add: addRecentRange, clear: clearRecent } = useRecentRanges();
 
   const { applyQuickRange } = useApplyQuickRange({
     setStartDate,
@@ -146,7 +146,11 @@ export const SuperDatePicker: React.FC = () => {
 
       <div className={styles.section}>
         <QuickRanges quickRanges={quickRanges} onSelect={applyQuickRange} />
-        <RecentRanges items={recent} onSelect={handleRecentSelect} />
+        <RecentRanges
+          items={recent}
+          onSelect={handleRecentSelect}
+          onClearHistory={clearRecent}
+        />
       </div>
 
       <div className={styles.section}>

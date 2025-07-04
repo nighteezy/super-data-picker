@@ -24,7 +24,7 @@ export const SingleDatePicker = ({
       dateFormat={dateFormat}
       locale={locale}
       className={styles.input}
-      popperPlacement="bottom-start"
+      popperPlacement="bottom-end"
     />
   </div>
 );

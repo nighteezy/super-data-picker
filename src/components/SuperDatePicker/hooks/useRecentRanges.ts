@@ -1,21 +1,26 @@
-import { useCallback, useState } from "react";
+// hooks/useRecentRanges.ts
+import { useState } from "react";
 import type { RecentRange } from "../types/RecentRange";
 
-const MAX_RECENT = 10;
-
-export const useRecentRanges = () => {
+const useRecentRanges = () => {
   const [recent, setRecent] = useState<RecentRange[]>([]);
 
-  const add = useCallback((newRange: RecentRange) => {
+  const add = (range: RecentRange) => {
     setRecent((prev) => {
-      const serialized = JSON.stringify(newRange);
-      const exists = prev.some((r) => JSON.stringify(r) === serialized);
-      if (exists) return prev;
-
-      const updated = [newRange, ...prev];
-      return updated.slice(0, MAX_RECENT);
+      const updated = [range, ...prev.filter((r) => r !== range)];
+      return updated.slice(0, 10);
     });
-  }, []);
+  };
 
-  return { recent, add, setRecent };
+  const clear = () => {
+    setRecent([]);
+  };
+
+  return {
+    recent,
+    add,
+    clear,
+  };
 };
+
+export default useRecentRanges;

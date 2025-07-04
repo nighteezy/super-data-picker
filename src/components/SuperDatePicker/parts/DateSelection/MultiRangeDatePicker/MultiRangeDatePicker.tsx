@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, type FC } from "react";
 import DatePicker from "react-datepicker";
 import { format, type Locale } from "date-fns";
 import styles from "./MultiRangeDatePicker.module.css";
 import "react-datepicker/dist/react-datepicker.css";
+import { createPortal } from "react-dom";
 
 interface Range {
   start: Date;
@@ -45,7 +46,13 @@ export const MultiRangeDatePicker = ({
     setTimeout(() => {
       setMultiRanges(multiRanges.filter((_, i) => i !== idx));
       setRemovingIndex(null);
-    }, 300); // Duration matches CSS transition
+    }, 300);
+  };
+
+  const PopperContainer: FC<{ children?: React.ReactNode }> = ({
+    children,
+  }) => {
+    return createPortal(children || null, document.body);
   };
 
   return (
@@ -61,6 +68,7 @@ export const MultiRangeDatePicker = ({
           calendarClassName={styles.calendar}
           popperClassName={styles.popper}
           placeholderText="Start"
+          popperContainer={PopperContainer}
         />
         <DatePicker
           selected={endDate}
@@ -73,6 +81,7 @@ export const MultiRangeDatePicker = ({
           calendarClassName={styles.calendar}
           popperClassName={styles.popper}
           placeholderText="End"
+          popperContainer={PopperContainer}
         />
       </div>
 

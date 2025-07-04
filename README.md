@@ -1,69 +1,70 @@
-# React + TypeScript + Vite
+# 🗓️ SuperDatePicker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Мощный компонент выбора дат на React + TypeScript, вдохновлённый Elastic UI.  
+Поддерживает относительные выражения (`now-15m`, `now/d`), несколько режимов выбора, автообновление, локализацию и быстрые диапазоны.
 
-Currently, two official plugins are available:
+## 🚀 Быстрый старт
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Установите зависимости:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Запустите проект в режиме разработки:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+## 🧪 Тестирование
+
+Проект покрыт модульными тестами:
+useAutoRefresh — корректный вызов onApply по таймеру, обработка паузы, смены режима, парсинг относительных дат
+useParseRelativeDate — поддержка now, now±, округлений /d, /h, /w и edge-кейсов
+
+Запустить все тесты один раз:
+
+```bash
+npm run test
+```
+
+Запустить тесты в режиме наблюдения:
+
+```bash
+npm run test:watch
+```
+
+## 📁 Структура проекта
+
+src/
+├── components/
+│ └── SuperDatePicker/
+│ ├── SuperDatePicker.tsx # Главный компонент
+│ ├── SuperDatePicker.module.css # Стили компонента (CSS Modules)
+│ ├── parts/ # Подкомпоненты (UI)
+│ ├── hooks/ # Пользовательские хуки
+│ ├── types/ # Общие типы
+│ └── utils/ # Утилиты для парсинга дат и т.д.
+├── App.tsx
+└── main.tsx
+
+## ✨ Возможности
+
+✅ Режимы: single, range, multi-range
+✅ Поддержка относительных выражений: now, now-15m, now-1d/d, now+5h и др.
+✅ Абсолютный выбор даты и времени
+✅ Быстрые диапазоны (Quick Ranges)
+✅ Автообновление с таймером (now-режим)
+✅ Локализация (en, ru, fr)
+✅ Превью абсолютной даты при относительном вводе
+✅ Возможность сравнения с предыдущим периодом
+
+## 📦 Используемые технологии
+
+- React
+- TypeScript
+- Vite
+- vitest + Testing Library
+- date-fns
+- CSS Modules
